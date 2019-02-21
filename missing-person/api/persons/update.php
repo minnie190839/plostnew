@@ -21,7 +21,8 @@ $missing = new MissingPersons ($db);
 $data = json_decode(file_get_contents("php://input"));
 
 // set ID property of product to be edited
-$missing->id = $data->id;
+
+$missing->plost_id = $data->plost_id;
 
 // set product property values
 $missing->pname = $data->pname;
@@ -33,12 +34,23 @@ $missing->place = $data->place;
 $missing->subdistrict = $data->subdistrict;
 $missing->district = $data->district;
 $missing->city = $data->city;
-$missing->detail = $data->detail;
-$missing->specific = $data->specific;
-$missing->status = $data->status;
+$missing->height = $data->height;
+$missing->weight = $data->weight;
+$missing->shape = $data->shape;
+$missing->hairtype = $data->hairtype;
+$missing->haircolor = $data->haircolor;
+$missing->skintone = $data->skintone;
+$missing->upperwaist = $data->upperwaist;
+$missing->uppercolor = $data->uppercolor;
+$missing->lowerwaist = $data->lowerwaist;
+$missing->lowercolor = $data->lowercolor;
+$missing->detail_etc = $data->detail_etc;
+$missing->special = $data->special;
 $missing->type_id = $data->type_id;
 $missing->guest_id = $data->guest_id;
+$missing->status = $data->status;
 $missing->reg_date = $data->reg_date;
+
 
 // update the product
 if($missing->update()){

@@ -1,10 +1,10 @@
 <?php
 class MissingPersons{
   private $connection;
-  private $table_name = "peoplelost";
+  private $table_name = "personlost";
 
 
-  public $id;
+  public $plost_id;
   public $pname;
   public $fname;
   public $lname;
@@ -21,9 +21,11 @@ class MissingPersons{
   public $haircolor;
   public $skintone;
   public $upperwaist;
+  public $uppercolor;
   public $lowerwaist;
+  public $lowercolor;
   public $detail_etc;
-  public $specific;
+  public $special;
   public $type_id;
   public $guest_id;
   public $status;
@@ -65,40 +67,41 @@ class MissingPersons{
      }
 
      function create(){
-       
-    // query to insert record
-      $query = "INSERT INTO
-                " . $this->table_name . "
-            SET
-                plost_id = :plost_id,
-                pname = :pname,
-                fname = :fname,
-                lname = :lname,
-                gender = :gender,
-                age = :age,
-                place = :place,
-                subdistrict = :subdistrict,
-                district = :district,
-                city = :city,
-                height = :height,
-                weight = :weight,
-                shape = :shape,
-                hairtype = :hairtype,
-                haircolor = :haircolor,
-                skintone = :skintone,
-                upperwaist = :upperwaist,
-                lowerwaist = :lowerwaist,
-                detail_etc = :detail_etc,
-                specific = :specific,
-                type_id = :type_id,
-                guest_id = :guest_id,
-                status = :status,
-                reg_date = :reg_date";
 
-    // prepare query
-    $stmt = $this->connection->prepare($query);
+       $query = "INSERT INTO
+                 " . $this->table_name . "
+             SET
+                 plost_id = :plost_id,
+                 pname = :pname,
+                 fname = :fname,
+                 lname = :lname,
+                 gender = :gender,
+                 age = :age,
+                 place = :place,
+                 subdistrict = :subdistrict,
+                 district = :district,
+                 city = :city,
+                 height = :height,
+                 weight = :weight,
+                 shape = :shape,
+                 hairtype = :hairtype,
+                 haircolor = :haircolor,
+                 skintone = :skintone,
+                 upperwaist = :upperwaist,
+                 uppercolor = :uppercolor,
+                 lowerwaist = :lowerwaist,
+                 lowercolor = :lowercolor,
+                 detail_etc = :detail_etc,
+                 special = :special,
+                 type_id = :type_id,
+                 guest_id = :guest_id,
+                 status = :status,
+                 reg_date = :reg_date";
 
-    // sanitize
+     // prepare query
+     $stmt = $this->connection->prepare($query);
+
+     // sanitize
     $this->plost_id=htmlspecialchars(strip_tags($this->plost_id));
     $this->pname=htmlspecialchars(strip_tags($this->pname));
     $this->fname=htmlspecialchars(strip_tags($this->fname));
@@ -116,46 +119,50 @@ class MissingPersons{
     $this->haircolor=htmlspecialchars(strip_tags($this->haircolor));
     $this->skintone=htmlspecialchars(strip_tags($this->skintone));
     $this->upperwaist=htmlspecialchars(strip_tags($this->upperwaist));
+    $this->uppercolor=htmlspecialchars(strip_tags($this->uppercolor));
     $this->lowerwaist=htmlspecialchars(strip_tags($this->lowerwaist));
+    $this->lowercolor=htmlspecialchars(strip_tags($this->lowercolor));
     $this->detail_etc=htmlspecialchars(strip_tags($this->detail_etc));
-    $this->specific=htmlspecialchars(strip_tags($this->specific));
+    $this->special=htmlspecialchars(strip_tags($this->special));
     $this->type_id=htmlspecialchars(strip_tags($this->type_id));
     $this->guest_id=htmlspecialchars(strip_tags($this->guest_id));
     $this->status=htmlspecialchars(strip_tags($this->status));
     $this->reg_date=htmlspecialchars(strip_tags($this->reg_date));
 
+     // bind values
+     $stmt->bindParam(":plost_id", $this->plost_id);
+     $stmt->bindParam(":pname", $this->pname);
+     $stmt->bindParam(":fname", $this->fname);
+     $stmt->bindParam(":lname", $this->lname);
+     $stmt->bindParam(":gender", $this->gender);
+     $stmt->bindParam(":age", $this->age);
+     $stmt->bindParam(":place", $this->place);
+     $stmt->bindParam(":subdistrict", $this->subdistrict);
+     $stmt->bindParam(":district", $this->district);
+     $stmt->bindParam(":city", $this->city);
+     $stmt->bindParam(":height", $this->height);
+     $stmt->bindParam(":weight", $this->weight);
+     $stmt->bindParam(":shape", $this->shape);
+     $stmt->bindParam(":hairtype", $this->hairtype);
+     $stmt->bindParam(":haircolor", $this->haircolor);
+     $stmt->bindParam(":skintone", $this->skintone);
+     $stmt->bindParam(":upperwaist", $this->upperwaist);
+     $stmt->bindParam(":uppercolor", $this->upperwaist);
+     $stmt->bindParam(":lowerwaist", $this->lowerwaist);
+     $stmt->bindParam(":lowercolor", $this->lowerwaist);
+     $stmt->bindParam(":detail_etc", $this->detail_etc);
+     $stmt->bindParam(":special", $this->special);
+     $stmt->bindParam(":type_id",$this->type_id);
+     $stmt->bindParam(":guest_id",$this->guest_id);
+     $stmt->bindParam(":status", $this->status);
+     $stmt->bindParam(":reg_date",$this->reg_date);
 
-    // bind values
-    $stmt->bindParam(":plost_id", $this->plost_id);
-    $stmt->bindParam(":pname", $this->pname);
-    $stmt->bindParam(":fname", $this->fname);
-    $stmt->bindParam(":lname", $this->lname);
-    $stmt->bindParam(":gender", $this->gender);
-    $stmt->bindParam(":age", $this->age);
-    $stmt->bindParam(":place", $this->place);
-    $stmt->bindParam(":subdistrict", $this->subdistrict);
-    $stmt->bindParam(":district", $this->district);
-    $stmt->bindParam(":city", $this->city);
-    $stmt->bindParam(":height", $this->height);
-    $stmt->bindParam(":weight", $this->weight);
-    $stmt->bindParam(":shape", $this->shape);
-    $stmt->bindParam(":hairtype", $this->hairtype);
-    $stmt->bindParam(":haircolor", $this->haircolor);
-    $stmt->bindParam(":skintone", $this->skintone);
-    $stmt->bindParam(":upperwaist", $this->upperwaist);
-    $stmt->bindParam(":lowerwaist", $this->lowerwaist);
-    $stmt->bindParam(":detail_etc", $this->detail_etc);
-    $stmt->bindParam(":specific", $this->specific);
-    $stmt->bindParam(":type_id",$this->type_id);
-    $stmt->bindParam(":guest_id",$this->guest_id);
-    $stmt->bindParam(":status", $this->status);
-    $stmt->bindParam(":reg_date",$this->reg_date);
+     // execute query
+     if($stmt->execute()){
+         return true;
+     }
 
-    if($stmt->execute()){
-        return true;
-    }
-
-    return false;
+     return false;
    }
 
   function emailExists(){
@@ -187,98 +194,99 @@ class MissingPersons{
 
   function update(){
 
-                  $query = "UPDATE $this->table_name
-                  SET pname = :pname,
-                  fname = :fname,
-                  lname = :lname,
-                  gender = :gender,
-                  age = :age,
-                  place = :place,
-                  subdistrict = :subdistrict,
-                  district = :district,
-                  city = :city,
-                  height = :height,
-                  weight = :weight,
-                  shape = :shape,
-                  hairtype = :hairtype,
-                  haircolor = :haircolor,
-                  skintone = :skintone,
-                  upperwaist = :upperwaist,
-                  lowerwaist = :lowerwaist,
-                  detail_etc = :detail_etc,
-                  specific = :specific,
-                  type_id = :type_id,
-                  guest_id = :guest_id,
-                  status = :status,
-                  reg_date = NOW()
-                  WHERE
-                plost_id = :plost_id";
+                        $query = "UPDATE $this->table_name
+                        SET pname = :pname,
+                         fname = :fname,
+                         lname = :lname,
+                         gender = :gender,
+                         age = :age,
+                         place = :place,
+                         subdistrict = :subdistrict,
+                         district = :district,
+                         city = :city,
+                         height = :height,
+                         weight = :weight,
+                         shape = :shape,
+                         hairtype = :hairtype,
+                         haircolor = :haircolor,
+                         skintone = :skintone,
+                         upperwaist = :upperwaist,
+                         uppercolor = :uppercolor,
+                         lowerwaist = :lowerwaist,
+                         lowercolor = :lowercolor,
+                         detail_etc = :detail_etc,
+                         special = :special,
+                         type_id = :type_id,
+                         guest_id = :guest_id,
+                         status = :status,
+                         reg_date = :reg_date
+                        WHERE
+                      plost_id = :plost_id";
 
+                      $stmt = $this->connection->prepare($query);
 
-      // prepare query statement
-      $stmt = $this->connection->prepare($query);
+                      // sanitize
+                     $this->plost_id=htmlspecialchars(strip_tags($this->plost_id));
+                     $this->pname=htmlspecialchars(strip_tags($this->pname));
+                     $this->fname=htmlspecialchars(strip_tags($this->fname));
+                     $this->lname=htmlspecialchars(strip_tags($this->lname));
+                     $this->gender=htmlspecialchars(strip_tags($this->gender));
+                     $this->age=htmlspecialchars(strip_tags($this->age));
+                     $this->place=htmlspecialchars(strip_tags($this->place));
+                     $this->subdistrict=htmlspecialchars(strip_tags($this->subdistrict));
+                     $this->district=htmlspecialchars(strip_tags($this->district));
+                     $this->city=htmlspecialchars(strip_tags($this->city));
+                     $this->height=htmlspecialchars(strip_tags($this->height));
+                     $this->weight=htmlspecialchars(strip_tags($this->weight));
+                     $this->shape=htmlspecialchars(strip_tags($this->shape));
+                     $this->hairtype=htmlspecialchars(strip_tags($this->hairtype));
+                     $this->haircolor=htmlspecialchars(strip_tags($this->haircolor));
+                     $this->skintone=htmlspecialchars(strip_tags($this->skintone));
+                     $this->upperwaist=htmlspecialchars(strip_tags($this->upperwaist));
+                     $this->uppercolor=htmlspecialchars(strip_tags($this->uppercolor));
+                     $this->lowerwaist=htmlspecialchars(strip_tags($this->lowerwaist));
+                     $this->lowercolor=htmlspecialchars(strip_tags($this->lowercolor));
+                     $this->detail_etc=htmlspecialchars(strip_tags($this->detail_etc));
+                     $this->special=htmlspecialchars(strip_tags($this->special));
+                     $this->type_id=htmlspecialchars(strip_tags($this->type_id));
+                     $this->guest_id=htmlspecialchars(strip_tags($this->guest_id));
+                     $this->status=htmlspecialchars(strip_tags($this->status));
+                     $this->reg_date=htmlspecialchars(strip_tags($this->reg_date));
 
-      // sanitize
-      $this->plost_id=htmlspecialchars(strip_tags($this->plost_id));
-      $this->pname=htmlspecialchars(strip_tags($this->pname));
-      $this->fname=htmlspecialchars(strip_tags($this->fname));
-      $this->lname=htmlspecialchars(strip_tags($this->lname));
-      $this->gender=htmlspecialchars(strip_tags($this->gender));
-      $this->age=htmlspecialchars(strip_tags($this->age));
-      $this->place=htmlspecialchars(strip_tags($this->place));
-      $this->subdistrict=htmlspecialchars(strip_tags($this->subdistrict));
-      $this->district=htmlspecialchars(strip_tags($this->district));
-      $this->city=htmlspecialchars(strip_tags($this->city));
-      $this->height=htmlspecialchars(strip_tags($this->height));
-      $this->weight=htmlspecialchars(strip_tags($this->weight));
-      $this->shape=htmlspecialchars(strip_tags($this->shape));
-      $this->hairtype=htmlspecialchars(strip_tags($this->hairtype));
-      $this->haircolor=htmlspecialchars(strip_tags($this->haircolor));
-      $this->skintone=htmlspecialchars(strip_tags($this->skintone));
-      $this->upperwaist=htmlspecialchars(strip_tags($this->upperwaist));
-      $this->lowerwaist=htmlspecialchars(strip_tags($this->lowerwaist));
-      $this->detail_etc=htmlspecialchars(strip_tags($this->detail_etc));
-      $this->specific=htmlspecialchars(strip_tags($this->specific));
-      $this->type_id=htmlspecialchars(strip_tags($this->type_id));
-      $this->guest_id=htmlspecialchars(strip_tags($this->guest_id));
-      $this->status=htmlspecialchars(strip_tags($this->status));
-      $this->reg_date=htmlspecialchars(strip_tags($this->reg_date));
+                      // bind values
+                      $stmt->bindParam(":plost_id", $this->plost_id);
+                      $stmt->bindParam(":pname", $this->pname);
+                      $stmt->bindParam(":fname", $this->fname);
+                      $stmt->bindParam(":lname", $this->lname);
+                      $stmt->bindParam(":gender", $this->gender);
+                      $stmt->bindParam(":age", $this->age);
+                      $stmt->bindParam(":place", $this->place);
+                      $stmt->bindParam(":subdistrict", $this->subdistrict);
+                      $stmt->bindParam(":district", $this->district);
+                      $stmt->bindParam(":city", $this->city);
+                      $stmt->bindParam(":height", $this->height);
+                      $stmt->bindParam(":weight", $this->weight);
+                      $stmt->bindParam(":shape", $this->shape);
+                      $stmt->bindParam(":hairtype", $this->hairtype);
+                      $stmt->bindParam(":haircolor", $this->haircolor);
+                      $stmt->bindParam(":skintone", $this->skintone);
+                      $stmt->bindParam(":upperwaist", $this->upperwaist);
+                      $stmt->bindParam(":uppercolor", $this->upperwaist);
+                      $stmt->bindParam(":lowerwaist", $this->lowerwaist);
+                      $stmt->bindParam(":lowercolor", $this->lowerwaist);
+                      $stmt->bindParam(":detail_etc", $this->detail_etc);
+                      $stmt->bindParam(":special", $this->special);
+                      $stmt->bindParam(":type_id",$this->type_id);
+                      $stmt->bindParam(":guest_id",$this->guest_id);
+                      $stmt->bindParam(":status", $this->status);
+                      $stmt->bindParam(":reg_date",$this->reg_date);
 
+                      // execute query
+                      if($stmt->execute()){
+                          return true;
+                      }
 
-
-      // bind values
-      $stmt->bindParam(":plost_id", $this->plost_id);
-      $stmt->bindParam(":pname", $this->pname);
-      $stmt->bindParam(":fname", $this->fname);
-      $stmt->bindParam(":lname", $this->lname);
-      $stmt->bindParam(":gender", $this->gender);
-      $stmt->bindParam(":age", $this->age);
-      $stmt->bindParam(":place", $this->place);
-      $stmt->bindParam(":subdistrict", $this->subdistrict);
-      $stmt->bindParam(":district", $this->district);
-      $stmt->bindParam(":city", $this->city);
-      $stmt->bindParam(":height", $this->height);
-      $stmt->bindParam(":weight", $this->weight);
-      $stmt->bindParam(":shape", $this->shape);
-      $stmt->bindParam(":hairtype", $this->hairtype);
-      $stmt->bindParam(":haircolor", $this->haircolor);
-      $stmt->bindParam(":skintone", $this->skintone);
-      $stmt->bindParam(":upperwaist", $this->upperwaist);
-      $stmt->bindParam(":lowerwaist", $this->lowerwaist);
-      $stmt->bindParam(":detail_etc", $this->detail_etc);
-      $stmt->bindParam(":specific", $this->specific);
-      $stmt->bindParam(":type_id",$this->type_id);
-      $stmt->bindParam(":guest_id",$this->guest_id);
-      $stmt->bindParam(":status", $this->status);
-      $stmt->bindParam(":reg_date",$this->reg_date);
-
-
-      // execute the query
-      if($stmt->execute()){
-              return true;
-          }
-
-          return false;
+                      return false;
       }
 
       // search products
@@ -332,8 +340,8 @@ function search(){
       $query = "SELECT * FROM
                    . $this->table_name
               WHERE
-                  id =$keywords
-                  ORDER BY id DESC";
+                  plost_id =$keywords
+                  ORDER BY plost_id DESC";
 
       // prepare query statement
       $stmt = $this->connection->prepare($query);
@@ -342,5 +350,9 @@ function search(){
 
       return $stmt;
     }
+
+
 }
+
+
 ?>

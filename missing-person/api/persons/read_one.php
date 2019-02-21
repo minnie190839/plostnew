@@ -37,21 +37,32 @@
 
           $missing_arr = array(
 
-              "pname"=> $pname,
-              "fname"=> $fname,
-              "lname"=> $lname,
-              "gender"=> $gender,
-              "age"=> $age,
-              "place"=> $place,
-              "subdistrict"=> $subdistrict,
-              "district"=> $district,
-              "city"=> $city,
-              "detail"=> $detail,
-              "specific"=> $specific,
-              "status"=> $status,
-              "type_id"=> $type_id,
-            
-              "reg_date"=> $reg_date
+        
+            "pname"=> $pname,
+            "fname"=> $fname,
+            "lname"=> $lname,
+            "gender"=> $gender,
+            "age"=> $age,
+            "place"=> $place,
+            "subdistrict"=> $subdistrict,
+            "district"=> $district,
+            "city"=> $city,
+            "height"=> $height,
+            "weight"=> $weight,
+            "shape"=> $shape,
+            "hairtype"=> $hairtype,
+            "haircolor"=> $haircolor,
+            "skintone"=> $skintone,
+            "upperrwaist"=> $upperwaist,
+            "uppercolor"=> $uppercolor,
+            "lowerwaist"=> $lowerwaist,
+            "lowercolor"=> $lowercolor,
+            "detail_etc"=> $detail_etc,
+            "special"=> $special,
+            "type_id"=> $type_id,
+            "guest_id"=> $guest_id,
+            "status"=> $status,
+            "reg_date"=> $reg_date
 
           );
           array_push($missing["body"], $missing_arr);
@@ -73,7 +84,7 @@
         extract($row);
 
         $missing_arr = array(
-            "id"=> $id,
+            "plost_id"=> $plost_id,
             "pname"=> $pname,
             "fname"=> $fname,
             "lname"=> $lname,
@@ -83,11 +94,23 @@
             "subdistrict"=> $subdistrict,
             "district"=> $district,
             "city"=> $city,
-            "detail"=> $detail,
-            "specific"=> $specific,
-            "status"=> $status,
+            "height"=> $height,
+            "weight"=> $weight,
+            "shape"=> $shape,
+            "hairtype"=> $hairtype,
+            "haircolor"=> $haircolor,
+            "skintone"=> $skintone,
+            "upperrwaist"=> $upperwaist,
+            "uppercolor"=> $uppercolor,
+            "lowerwaist"=> $lowerwaist,
+            "lowercolor"=> $lowercolor,
+            "detail_etc"=> $detail_etc,
+            "special"=> $special,
             "type_id"=> $type_id,
-            "guest_id"=> $guest_id
+            "guest_id"=> $guest_id,
+            "status"=> $status,
+            "reg_date"=> $reg_date
+
 
         );
         array_push($missing["body"], $missing_arr);
