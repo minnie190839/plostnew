@@ -35,9 +35,17 @@
       }
 
       search
-    {
-    {"fname":"กิติพงษ์",
-    "lname":"วงษ์",
-    "city" :"กรุง"
-    }
-    
+
+      {
+              "fname": "ศักดิ์ชัย ",
+              "lname": "นามบุตร",
+              "gender": "M",
+              "city": "สมุทรปราการ",
+              "height": "160",
+              "shape": "1",
+              "hairtype": "3",
+              "haircolor": "1",
+              "skintone": "4",
+              "type_id": "6",
+              "status": "0"
+          }

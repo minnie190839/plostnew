@@ -291,50 +291,64 @@ class MissingPersons{
 
       // search products
 function search(){
-
-    // select all query
-    $query = "SELECT p.fname,p.lname,p.city,p.detail_etc,t.type_name as type_type_name FROM
-                 . $this->table_name  p
-                 LEFT JOIN
-                     type t
-                         ON p.type_id = t.type_id
-            WHERE
-                fname LIKE :fname OR lname LIKE :lname OR city LIKE :city
-            ORDER BY
-                fname DESC";
-
-    // prepare query statement
-    $stmt = $this->connection->prepare($query);
-
-    // sanitize
-    $this->fname=htmlspecialchars(strip_tags($this->fname));
-    $this->lname=htmlspecialchars(strip_tags($this->lname));
-    $this->city=htmlspecialchars(strip_tags($this->city));
-    //$this->type=htmlspecialchars(strip_tags($this->type));
-    //$this->missing_person=htmlspecialchars(strip_tags($this->missing_person));
-
-    $this->fname = "%{$this->fname}%";
-    $this->lname = "%{$this->lname}%";
-    $this->fname = "%{$this->city}%";
-    //$this->lname = "%{$this->type}%";
-    //$this->missing_person = "%{$this->missing_person}%";
-    // bind
-
-    $stmt->bindParam(":fname", $this->fname);
-    $stmt->bindParam(":lname", $this->lname);
-    $stmt->bindParam(":city", $this->city);
-   //$stmt->bindParam(":type", $this->type);
-   //$stmt->bindParam(":missing_person", $this->missing_person);
-    //$stmt->bindParam(1, $keywords);
-    //$stmt->bindParam(2, $keywords);
-    //$stmt->bindParam(3, $keywords);
-
-    $stmt->execute();
-
-    return $stmt;
-
+  $query = "SELECT * FROM
+               . $this->table_name
+          WHERE
+      fname LIKE :fname OR lname LIKE :lname OR gender LIKE :gender OR city LIKE :city OR height LIKE :height OR shape LIKE :shape
+      OR hairtype LIKE :hairtype OR haircolor LIKE :haircolor OR skintone LIKE :skintone OR type_id LIKE :type_id OR status LIKE :status
+  ORDER BY
+      fname DESC";
+      // prepare query statement
+      $stmt = $this->connection->prepare($query);
+  // sanitize
+  $this->fname=htmlspecialchars(strip_tags($this->fname));
+  $this->lname=htmlspecialchars(strip_tags($this->lname));
+  $this->gender=htmlspecialchars(strip_tags($this->gender));
+  $this->city=htmlspecialchars(strip_tags($this->city));
+  $this->height=htmlspecialchars(strip_tags($this->height));
+  $this->shape=htmlspecialchars(strip_tags($this->shape));
+  $this->hairtype=htmlspecialchars(strip_tags($this->hairtype));
+  $this->haircolor=htmlspecialchars(strip_tags($this->haircolor));
+  $this->skintone=htmlspecialchars(strip_tags($this->skintone));
+  $this->type_id=htmlspecialchars(strip_tags($this->type_id));
+  $this->status=htmlspecialchars(strip_tags($this->status));
+  //$this->type=htmlspecialchars(strip_tags($this->type));
+  //$this->missing_person=htmlspecialchars(strip_tags($this->missing_person));
+  $this->fname = "%{$this->fname}%";
+  $this->lname = "%{$this->lname}%";
+  $this->gender = "%{$this->gender}%";
+  $this->city = "%{$this->city}%";
+  $this->height = "%{$this->height}%";
+  $this->shape = "%{$this->shape}%";
+  $this->hairtype = "%{$this->hairtype}%";
+  $this->haircolor = "%{$this->haircolor}%";
+  $this->skintone = "%{$this->skintone}%";
+  $this->type_id = "%{$this->type_id}%";
+  $this->status= "%{$this->status}%";
+  //$this->lname = "%{$this->type}%";
+  //$this->missing_person = "%{$this->missing_person}%";
+  // bind
+  $stmt->bindParam(":fname", $this->fname);
+  $stmt->bindParam(":lname", $this->lname);
+  $stmt->bindParam(":gender", $this->gender);
+  $stmt->bindParam(":city", $this->city);
+  $stmt->bindParam(":height", $this->height);
+  $stmt->bindParam(":shape", $this->shape);
+  $stmt->bindParam(":hairtype", $this->hairtype);
+  $stmt->bindParam(":haircolor", $this->haircolor);
+  $stmt->bindParam(":skintone", $this->skintone);
+  $stmt->bindParam(":type_id", $this->type_id);
+  $stmt->bindParam(":status", $this->status);
+  //$stmt->bindParam(":type", $this->type);
+  //$stmt->bindParam(":missing_person", $this->missing_person);
+  //$stmt->bindParam(1, $keywords);
+  //$stmt->bindParam(2, $keywords);
+  //$stmt->bindParam(3, $keywords);
+  $stmt->execute();
+  return $stmt;
   }
 
+}
   function read_one($keywords){
 
       $query = "SELECT * FROM
@@ -349,10 +363,11 @@ function search(){
       $stmt->execute();
 
       return $stmt;
-    }
-
-
 }
 
+      function search_one(){
 
+
+
+    }
 ?>
