@@ -1,7 +1,7 @@
 <?php
 class MissingPersons{
   private $connection;
-  private $table_name = "personlost";
+  private $table_name = "peoplelost";
 
 
   public $plost_id;
@@ -365,9 +365,5 @@ function search(){
       return $stmt;
 }
 
-      function search_one(){
 
-
-
-    }
 ?>
